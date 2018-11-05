@@ -1,0 +1,23 @@
+<div class="button-row">
+  <a mat-raised-button color="primary" [routerLink]="['/words']"><mat-icon>list</mat-icon></a>
+</div>
+<form [formGroup]="wordForm" (ngSubmit)="onFormSubmit(wordForm.value)">
+  <mat-form-field class="example-full-width">
+    <input matInput placeholder="Word" formControlName="word"
+      [errorStateMatcher]="matcher">
+    <mat-error>
+      <span *ngIf="!wordForm.get('word').valid && wordForm.get('word').touched">Please enter Word</span>
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+    <input matInput placeholder="Translation" formControlName="translation"
+      [errorStateMatcher]="matcher">
+    <mat-error>
+      <span *ngIf="!wordForm.get('translation').valid && wordForm.get('translation').touched">Please enter Translation</span>
+    </mat-error>
+  </mat-form-field>
+  <div class="button-row">
+    <button type="submit" [disabled]="!wordForm.valid" mat-raised-button color="primary"><mat-icon>save</mat-icon></button>
+  </div>
+</form>
