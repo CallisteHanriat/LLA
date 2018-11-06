@@ -17,34 +17,24 @@ import {
   MatCardModule,
   MatFormFieldModule } from '@angular/material';
 
-  import { HttpClientModule } from '@angular/common/http';
-const appRoutes: Routes = [
-  {
-    path: 'words',
-    component: WordComponent,
-    data: {title: 'Word list'}
-  },
-  {
-    path: 'word-create',
-    component: WordCreateComponent,
-    data: {title: 'Create word'}
-  },
-  {
-    path: '',
-    redirectTo: '/words',
-    pathMatch: 'full'
-  }
-];
+ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+import { appRoutes } from './entities/Word/word.route';
+
+import { HttpClientModule } from '@angular/common/http';
+import { HomeComponent } from './share/component/home/home.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     WordComponent,
-    WordCreateComponent
+    WordCreateComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
-    RouterModule.forRoot(appRoutes),
+    RouterModule.forRoot(appRoutes, {onSameUrlNavigation: 'reload'}),
     FormsModule,
     HttpClientModule,
     MatInputModule,
@@ -56,6 +46,7 @@ const appRoutes: Routes = [
     MatButtonModule,
     MatCardModule,
     MatFormFieldModule,
+    BrowserAnimationsModule,
     ReactiveFormsModule
   ],
   providers: [],
