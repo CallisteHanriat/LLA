@@ -14,6 +14,8 @@ import {
 import { HttpClientModule } from '@angular/common/http';
 import { HomeComponent } from './share/component/home/home.component';
 import { EntitiesModule } from './entities/entities.module';
+import { FileSelectDirective } from 'ng2-file-upload';
+import { ShareModule } from './share/share.module';
 
 
 @NgModule({
@@ -24,11 +26,12 @@ import { EntitiesModule } from './entities/entities.module';
     BrowserModule,
     RouterModule,
     HttpClientModule,
-    EntitiesModule,        
+    EntitiesModule,
     MatCardModule,
     MatFormFieldModule,
     BrowserAnimationsModule,
-    ReactiveFormsModule    
+    ReactiveFormsModule,
+    ShareModule
   ],
   providers: [],
   bootstrap: [AppComponent]

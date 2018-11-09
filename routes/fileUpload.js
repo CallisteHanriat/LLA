@@ -10,11 +10,8 @@ let multer = require('multer');
 var connection = mongoose.connection;
 let Grid = require('gridfs-stream');
 Grid.mongo = mongoose.mongo;
-console.log(mongoose.mongo.Db);
-//console.log(mongoose.connection.db);
-let gfs = Grid(mongoose.mongo.Db);
-// console.log(connection.db);
-// let gfs=Grid(connection.db);
+
+let gfs=Grid(mongoose.mongo.Db);
 let GridFsStorage = require('multer-gridfs-storage');
 
 
@@ -34,25 +31,35 @@ let storage = GridFsStorage({
   metadata: function(req, file, cb) {
       cb(null, { originalname: file.originalname });
   },
-  root: 'LLAfichiersExcelleDeMots' // Root collection name
+  bucketName: 'LLAFiles',
+  // root: 'LLAfichiersExcelleDeMots' // Root collection name
 });
 
 // Multer configuration for single file uploads
 let upload = multer({
   storage: storage
-}).single('fichierDeMots');
+}).single('file');
 
 // Route for file upload
 router.post('/upload', (req, res) => {
   // req.file est mon fichier excel.
+  // console.log(req);
+  // console.log(req.file);
   upload(req,res, (err) => {
       if(err){
            res.json({error_code:1,err_desc:err});
+           console.log('erreur');
            return;
       }
       res.json({error_code:0, error_desc: null, file_uploaded: true});
+      console.log(req.file);
+      console.log('collection added');
   });
 });
+
+/*router.post('/upload', upload.single('file'), function(req, res, next) {
+  console.log(req);
+})*/
 
 
 module.exports = router;

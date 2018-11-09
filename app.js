@@ -21,12 +21,11 @@ app.use((req, res, next) => {
 
 
 
-mongoose.connect('mongodb://localhost/LLA', { promiseLibrary: require('bluebird') })
-  .then(()=>console.log('Connection to the database sucessful'))
+mongoose.connect('mongodb://localhost/LLA', { promiseLibrary: require('bluebird'), useNewUrlParser: true })
+  .then((res)=> {
+    console.log('Connection to the database sucessful');     
+  })
   .catch((err) => console.log('err'));  
-
-
-
 
 var apiFile = require('./routes/fileUpload');
 
@@ -35,8 +34,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'dist/LLA')));
 app.use('/', express.static(path.join(__dirname, 'dist/LLA')));
-app.use('/api', apiRouter);
 app.use('/api', apiFile);
+app.use('/api', apiRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -56,3 +55,4 @@ app.use(function(err, req, res, next) {
 
 
 module.exports = app;
+console.log('module exported');

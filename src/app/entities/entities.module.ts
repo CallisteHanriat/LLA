@@ -18,6 +18,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { WordComponent } from './Word/word/word.component';
 import { WordCreateComponent } from './Word/word-create/word-create.component';
 import { HomeComponent } from '../share/component/home/home.component';
+import { ShareModule } from '../share/share.module';
+import { FileSelectDirective } from 'ng2-file-upload';
 
 @NgModule({
   imports: [
@@ -33,12 +35,13 @@ import { HomeComponent } from '../share/component/home/home.component';
     MatCardModule,
     MatFormFieldModule,
     BrowserAnimationsModule,
-    ReactiveFormsModule    
+    ReactiveFormsModule
   ],
   declarations: [
     WordComponent,
     WordCreateComponent,
-    HomeComponent
+    HomeComponent,
+    FileSelectDirective
   ]
 })
 export class EntitiesModule { }

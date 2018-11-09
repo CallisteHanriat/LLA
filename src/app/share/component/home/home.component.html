@@ -2,3 +2,11 @@
     <label for="fileToUpload"><mat-icon>add</mat-icon></label>
 </button>
 <input ng2FileSelect [uploader]="uploader" id="fileToUpload" type="file" style="display:none;">
+
+<input type="file" name="file" ng2FileSelect [uploader]="uploader" />
+
+
+<button mat-raised-button type="button" (click)="uploadfile()">
+    UPLOAD
+    <!-- <label for="fileToUpload"><mat-icon>add</mat-icon></label> -->
+</button>

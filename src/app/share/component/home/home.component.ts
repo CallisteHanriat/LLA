@@ -7,7 +7,7 @@ import { FileService } from '../services/file.service';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  private url='http://localhost:3000/upload';
+  private url = 'http://localhost:3000/api/upload';
   private uploader: FileUploader;
 
   constructor(private fileService: FileService) { }
@@ -15,5 +15,9 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
     this.uploader = new FileUploader({url: this.url});
   }
-
+  
+  uploadfile() {
+    console.log('file upload');
+    this.uploader.uploadAll();
+  }
 }
