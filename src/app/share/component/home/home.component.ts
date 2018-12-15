@@ -9,6 +9,7 @@ import { FileService } from '../services/file.service';
 export class HomeComponent implements OnInit {
   private url = 'http://localhost:3000/api/upload';
   private uploader: FileUploader;
+  private fileName: string;
 
   constructor(private fileService: FileService) { }
 

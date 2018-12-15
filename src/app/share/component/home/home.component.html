@@ -1,12 +1,14 @@
-<button mat-mini-fab type="button" onclick="document.getElementById('fileToUpload').click()">
+<!-- <button mat-mini-fab type="file" name="file" ng2FileSelect [uploader]="uploader" mat-mini-fab>
     <label for="fileToUpload"><mat-icon>add</mat-icon></label>
 </button>
-<input ng2FileSelect [uploader]="uploader" id="fileToUpload" type="file" style="display:none;">
+<input ng2FileSelect [uploader]="uploader" id="fileToUpload" type="file" style="display:none;"> -->
 
-<input type="file" name="file" ng2FileSelect [uploader]="uploader" />
+<div layout-fill class="mainContener">
+    <div class="center">
+        <input type="file" name="file" ng2FileSelect [uploader]="uploader" />
 
-
-<button mat-raised-button type="button" (click)="uploadfile()">
-    UPLOAD
-    <!-- <label for="fileToUpload"><mat-icon>add</mat-icon></label> -->
-</button>
+        <button mat-raised-button type="button" (click)="uploadfile()" class="buttonUpload">
+            UPLOAD
+        </button>
+    </div>
+</div>
