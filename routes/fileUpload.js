@@ -71,7 +71,7 @@ router.post('/upload', (req, res) => {
       console.log('Première ligne : ' + JSON.stringify(rowOne));
 
       columnOne = readColumn(workBook, 1, 100);
-      console.log('First column : ' + JSON.stringify(columnOne)); 
+      console.log('First column : ' + JSON.stringify(columnOne));
      // columnToBrowse = detectLangColumn(workBook); // ex: [{val: 'français', adress: 'A1', column:'A', row:1}]
   });
 });
@@ -92,6 +92,12 @@ function readRow(workBook, rowNumber) {
   return concernedColumns;
 }
 
+/**
+ * 
+ * @param {} workBook is the workbook necessary to do treatment
+ * @param {*} columnNumber is the column number of the 
+ * @param {*} rowLimit the limit of the number of rows we want
+ */
 function readColumn(workBook, columnNumber, rowLimit) {
   var alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
   var concernedRows = {};
