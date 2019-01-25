@@ -94,38 +94,23 @@ router.post('/upload', (req, res) => {
 
     console.log('current record in mongodb : ' + currentFileName);    
 
-
-    // var col = mongoose.mongo.Db.prototype.collection("fs.files()");
-
     var db = new mongo.Db('LLA', new mongo.Server("127.0.0.1", 27017));
-    var grfs = Grid(db, mongo);
+    // var grfs = Grid(db, mongo);
+    var grfs = new mongoose.mongo.GridFSBucket(db);
 
-    // console.dir(grfs);
-
-
-    var readStream = grfs.createReadStream({ filename: "Boîte à mots.xlsx-1548283270159.xlsx" });
-    // fs.createReadStream('Boîte à mots.xlsx-1548283270159.xlsx').pipe(writeStream);
+    var readStream = grfs.openDownloadStream({ filename: currentFileName });    // var photoID = new ObjectID(req.params.photoID); let downloadStream = bucket.openDownloadStream(photoID);
+    readStream.on('data' , (chunk) => {
+      console.log('data : ' + chunk);
+    });
 
     //error handling, e.g. file does not exist
     readStream.on('error', function (err) {
        console.log('An error occurred!', err);
        throw err;
     });
-    console.dir(readStream);
-    // readStream.pipe(response);
+    console.dir(readStream);       
 
-    //console.dir(col);
-    /*var readstream = gfs.createReadStream({
-      filename: currentFileName
-    });
-    
-    //error handling, e.g. file does not exist
-    readstream.on('error', function (err) {
-      console.log('An error occurred!', err);
-      throw err;
-    });
-    
-    readstream.pipe(response);*/
+    // readStream.read();
   })
 });
 
